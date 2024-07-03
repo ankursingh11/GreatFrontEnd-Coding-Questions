@@ -1,6 +1,3 @@
-
-// https://www.greatfrontend.com/questions/javascript/find-index
-
 /**
  * This function returns the index of the first element in the array that satisfies the provided testing function.
  * Otherwise, it returns -1, indicating that no element passed the test.
@@ -12,10 +9,14 @@
  */
 export default function findIndex(array, predicate, fromIndex = 0) {
   const length = array.length;
-  const startIndex = (fromIndex >= 0 ? fromIndex : Math.max(length + fromIndex, 0));
+  
+  let startIndex;
+  if(fromIndex >= 0 && fromIndex < length) startIndex = fromIndex;
+  else if(fromIndex < 0) startIndex = Math.max(fromIndex + length, 0);
+
   for(let i = startIndex; i < length; i++){
     if(predicate(array[i], i, array)) return i;
-  }
+  } 
 
   return -1;
 }

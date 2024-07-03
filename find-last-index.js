@@ -1,6 +1,3 @@
-
-// https://www.greatfrontend.com/questions/javascript/find-last-index
-
 /**
  * This function returns the index of the last element in the array that satisfies the provided testing function.
  * Otherwise, it returns -1.
@@ -17,7 +14,9 @@ export default function findLastIndex(
 ) {
   
   let length = array.length;
-  let startIndex = (fromIndex < 0) ? Math.max(fromIndex+length, 0) : Math.min(fromIndex, length-1);
+  let startIndex;
+  if(fromIndex < 0) startIndex = Math.max(fromIndex+length, 0);
+  else startIndex = Math.min(fromIndex, length-1);
 
   for(let i = startIndex; i >= 0; i--){
     if(predicate(array[i], i, array)) return i;
